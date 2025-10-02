@@ -1,0 +1,31 @@
+<ion-header [translucent]="true" mode="ios" class="ion-no-border">
+  <ion-toolbar>
+    <ion-title>
+      Noticias Dakyn
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense" mode="ios" class="ion-no-border">
+    <ion-toolbar>
+      <ion-title size="large">Noticias Dakyn</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+
+  <app-articles>
+    [articles]="articles"
+  </app-articles>
+
+    <ion-infinite-scroll 
+    threshold="25%" 
+    position="bottom" 
+    (ionInfinite)="loadData()"
+  >
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Cargando más noticias...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+
+</ion-content>
