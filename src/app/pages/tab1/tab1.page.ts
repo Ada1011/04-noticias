@@ -16,22 +16,29 @@ export class Tab1Page implements OnInit {
   @ViewChild(IonInfiniteScroll, { static: true }) infiniteScroll!: IonInfiniteScroll;
   public articles: Article[] = [];
 
+
   constructor(private newsService: NewsService) {}
 
   ngOnInit(): void {
-    this.newsService.getTopHeadlines()
-      .subscribe(articles => this.articles.push(...articles));
+    this.newsService.getTopHeadlinesByCategory('sports', false)
+      .subscribe( articles => {
+        this.articles = [...articles];
+      });
   }
 
-  loadData() {
-    this.newsService.getTopHeadlinesByCategory('business', true)
+  loadData(event:any) {
+    console.log(event,'si entre 1');
+    this.newsService.getTopHeadlinesByCategory('sports', true)
       .subscribe(articles => {
         if (articles.length === this.articles.length) {
           this.infiniteScroll.disabled = true;
+          console.log(event,'si entre 2');
           return;
+
         }
         this.articles = articles;
         this.infiniteScroll.complete();
       });
   }
 }
+
