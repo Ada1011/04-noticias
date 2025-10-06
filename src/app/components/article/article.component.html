@@ -1,21 +1,20 @@
 <ion-card>
   <ion-card-subtitle class="ion-margin">
 
-    <ion-row class="ion-align-items-center"
-    (click)="openArticle()">
-      <ion-col size="12">
+    <ion-row class="ion-align-items-center">
+      <ion-col size="ion-margin" (click)="openArticle()">
         <span class="text-primary">{{ index }}. </span>
         <span class="article-source-name">{{ article.source.name }}</span>
       </ion-col>
 
       <ion-col aling="right">
-        <ion-button (click)="openArticle()" fill="clear">
+        <ion-button (click)="onOpenMenu()" fill="clear">
           <ion-icon slot="icon-only" name="ellipsis-vertical-outline"></ion-icon>
         </ion-button>
       </ion-col>
     </ion-row>
 
-    
+
 
   </ion-card-subtitle>
 
@@ -23,8 +22,8 @@
     {{ article.title }}
   </ion-card-title>
 
-  <ion-img 
-  *ngIf="article.urlToImage" 
+  <ion-img
+  *ngIf="article.urlToImage"
   [src]="article.urlToImage"
   (click)="openArticle()"
   ></ion-img>

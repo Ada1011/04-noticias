@@ -21,14 +21,14 @@ export class NewsService {
   private executeQuery<T>(endpoint: string)  {
     console.log('Petición HTTP realizada');
     return this.http.get<T>(`${ apiUrl }${ endpoint }`, {
-      params: { 
+      params: {
         apiKey: apiKey,
         country: 'us',
       }
     })
   }
 
-  getTopHeadlines(): Observable<Article[]> { 
+  getTopHeadlines(): Observable<Article[]> {
 
     return this.getTopHeadlinesByCategory('business');
     //return this.http.get<RespuestaTopHeadlines>(
@@ -53,6 +53,8 @@ export class NewsService {
       .pipe(
         map( ({articles}) => articles)
       );
+    //   console.log('Petición HTTP realizada');  // Línea 22
+    // return this.http.get<Article[]>('url...');
   }
 
   private getArticlesByCategory(category: string): Observable<Article[]> {
@@ -60,7 +62,7 @@ export class NewsService {
     if ( Object.keys ( this.articlesByCategoryAndPage).includes(category) ) {
       // ya tenemos la categoría
      //this.articlesByCategoryAndPage[category].page += 0;
-    } else {  
+    } else {
       this.articlesByCategoryAndPage[category] = {
         page: 0,
         articles: []
@@ -71,9 +73,9 @@ export class NewsService {
 
     return this.executeQuery<RespuestaTopHeadlines>(`/top-headlines?category=${category}&page=${page}`)
       .pipe(
-        map( ({articles}) => { 
+        map( ({articles}) => {
 
-          if ( articles.length === 0 ) return []; 
+          if ( articles.length === 0 ) return [];
 
           this.articlesByCategoryAndPage[category] = {
             page: page,
@@ -83,9 +85,5 @@ export class NewsService {
           return this.articlesByCategoryAndPage[category].articles;
         })
       );
-    
-
-
   }
-
 }

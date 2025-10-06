@@ -10,7 +10,10 @@ import { ArticlesComponent } from '../../components/articles/articles.component'
   standalone: true,
   templateUrl: 'tab1.page.html',
   styleUrls: ['tab1.page.scss'],
-  imports: [CommonModule, IonicModule, ArticlesComponent]
+  imports: [CommonModule, IonicModule, ArticlesComponent],
+  providers: [
+           NewsService,]
+
 })
 export class Tab1Page implements OnInit {
   @ViewChild(IonInfiniteScroll, { static: true }) infiniteScroll!: IonInfiniteScroll;
