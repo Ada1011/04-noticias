@@ -38,13 +38,16 @@ export class Tab2Page implements OnInit {
       .subscribe( articles => {
         this.articles = [...articles];
       })
-  } 
+      this.infiniteScroll.disabled = false;
+  }
 
-  loadData() {
+  loadData(event: any) {
     this.newsService.getTopHeadlinesByCategory( this.selectedCategory, true )
       .subscribe( articles => {
-        if ( articles.length === this.articles.length ) {
+        if ( articles.length === 0 ) {  //se modifico this.articles.length por 0
           this.infiniteScroll.disabled = true;
+          event.target.disabled = true;//agregado
+          event.target.complete();//agregado
           //event.target.disabled = true;
           return;
         }

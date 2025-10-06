@@ -1,0 +1,10 @@
+{
+  "extends": [
+    "development"
+  ],
+  "hints": {
+    "apple-touch-icons": "off",
+    "meta-viewport": "off",
+    "manifest-exists": "off"
+  }
+}

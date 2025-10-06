@@ -14,8 +14,8 @@
   </ion-header>
 
 
-  <ion-segment 
-    [value]="selectedCategory" 
+  <ion-segment
+    [value]="selectedCategory"
     (ionChange)="segmentChanged($event)"
     scrollable
     mode="md">
@@ -28,10 +28,10 @@
 
   <app-articles [articles]="articles"></app-articles>
 
-  <ion-infinite-scroll 
-    threshold="25%" 
-    position="bottom" 
-    (ionInfinite)="loadData()"
+  <ion-infinite-scroll
+    threshold="25%"
+    position="bottom"
+    (ionInfinite)="loadData($event)"
   >
     <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Cargando más noticias...">
     </ion-infinite-scroll-content>
